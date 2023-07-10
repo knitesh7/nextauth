@@ -140,6 +140,7 @@ const LoginPage = () => {
                     setemail(()=>'')
                     seturltoken(()=>'')
                     setpassword(()=>'')
+                    setvisibleUpdate(()=>false)
                     return 'Password has been updated..'
                 },
                 error: (err) => {
