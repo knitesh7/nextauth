@@ -77,13 +77,51 @@ const LoginPage = () => {
 
 
     const handleMailSend = async () => {
-        try {
-            const resp = await axios.post('/api/user/forgoturl', { email })
-            setvisibleUpdate(true)
-        } catch (error) {
-            console.log(error.response.data)
-            alert(error.response.data.message)
-        }
+
+        // try {
+        //     const resp = await axios.post('/api/user/forgoturl', { email })
+        //     setvisibleUpdate(true)
+
+        // } catch (error) {
+        //     console.log(error.response.data)
+        //     alert(error.response.data.message)
+        // }
+        const forgoturlpromise = axios.post('/api/user/forgoturl', { email })
+        
+        toast.promise(
+            forgoturlpromise,
+            {
+                loading: 'Wait a moment! Sending token... ',
+                success: () => {
+                    setvisibleUpdate(true)
+                    return 'Token has been sent..'
+                },
+                error: (err) => {
+                    setData(() => ({ email: '', password: '' }))
+                    return err.response.data.message
+                }
+            },
+            {
+                style: {
+                    minWidth: '250px',
+                },
+                success: {
+                    duration: 1000,
+                    style: {
+                        backgroundColor: 'lightgreen'
+                    },
+                },
+                error: {
+                    duration: 3000,
+                    icon: '⚠️',
+                    style: {
+                        backgroundColor: 'red',
+                        color: 'white'
+                    },
+
+                },
+            }
+        )
     }
     const handleFPChange = (e) => {
         switch (e.target.id) {
@@ -161,7 +199,7 @@ const LoginPage = () => {
                             <div>
                                 {visibleUpdate && (<>
                                     <input className='m-1 w-full' type='text' placeholder='Enter token url' value={urltoken} id='urltoken' onChange={handleFPChange}></input>
-                                    <input  type='text' placeholder='Enter new password' value={password} id='password' onChange={handleFPChange}></input>
+                                    <input type='password' placeholder='Enter new password' value={password} id='password' onChange={handleFPChange}></input>
                                     <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold border bg-green-200 border-gray-400  m-1 rounded shadow' onClick={handleForgotPass}>Update Password</button>
                                 </>)}
 

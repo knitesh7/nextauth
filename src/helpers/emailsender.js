@@ -6,6 +6,8 @@ async function x() {
     await mongodbConnector()
 }
 x()
+const ADMIN_EMAIL = await process.env.ADMIN_EMAIL
+const NODEMAILER_PASSKEY = await process.env.NODEMAILER_PASSKEY
 
 export default async function sendEmail(email, emailType, userKey) {
     try {
@@ -29,8 +31,8 @@ export default async function sendEmail(email, emailType, userKey) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'projectsbyme1234@gmail.com',
-                pass: 'betcwsithtkjzocl'
+                user: ADMIN_EMAIL,
+                pass: NODEMAILER_PASSKEY
             }
         });
         //
