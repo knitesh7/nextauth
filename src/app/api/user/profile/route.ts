@@ -7,7 +7,9 @@ const GET = async (request: NextRequest) => {
     await mongodbConnector()
     try {
         const userId = await idFetcher(request)
-
+        if(!userId){
+            return NextResponse.json({ message:'id not received'}, { status: 400 })
+        }
         const userProfile = await UserModeler.findById(userId).select('-password -__v -verifyToken -verifyTokenExpiry -forgotPasswordToken -forgotPasswordTokenExpiry')
 
         return NextResponse.json({ user: userProfile }, { status: 200 })
