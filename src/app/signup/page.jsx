@@ -8,7 +8,7 @@ import Link from 'next/link'
 import './signup.css'
 const RegisterPage = () => {
     const router = useRouter()
-    const [data, setData] = useState({ username: '', email: '', password: '' })
+    const [data, setData] = useState({ username: '', email: '', password: '',bio:'' })
     const [toastLoaded,setToastLoaded]= useState(false)
     const handleChange = (e) => {
         const { id, value } = e.target
@@ -100,6 +100,7 @@ const RegisterPage = () => {
                             <input type="text" name="username" id="username" placeholder="UserName" value={data.username} onChange={handleChange} />
                             <input type="email" name="email" placeholder="Email" id="email" value={data.email} onChange={handleChange} />
                             <input type="password" name="password" placeholder="Password" id="password" value={data.password} onChange={handleChange} />
+                            <input type="text" name="bio" placeholder="Enter bio" id="bio" value={data.bio} onChange={handleChange} />
                             <button>Sign Up</button>
                         </form>
                     </div>

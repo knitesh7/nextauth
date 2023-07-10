@@ -6,6 +6,10 @@ const userSchema = Schema({
         required: [true, 'Please provide an username'],
         unique: true
     },
+    bio: {
+        type: String,
+        default:'Default bio📓'
+    },
     email: {
         type: String,
         required: [true, 'Please provide an email'],

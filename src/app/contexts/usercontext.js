@@ -1,6 +1,6 @@
 "use client"
 import { useContext, useReducer, createContext } from 'react';
-
+const initialState = { loggedIn: false, token: null, info: null }
 const userInfo = createContext(null)
 
 const useUserInfo = () => {
@@ -15,6 +15,8 @@ const reducer = (state, action) => {
             return { ...state, loggedIn: false ,token:null}
         case 'setUser':
             return { ...state, info:action.payload}
+        case 'delUser':
+            return { ...state, ...initialState}
         case 'verified':
             return { ...state, info:{...state.info,isVerified:true}}
         default:
@@ -23,7 +25,8 @@ const reducer = (state, action) => {
 }
 
 export default function UserInfoProvider(props){
-    const [user, dispatch] = useReducer(reducer, { loggedIn: false, token: null, info: null })
+    
+    const [user, dispatch] = useReducer(reducer, initialState)
     return (
         <userInfo.Provider value={{ user, dispatch }}>
             {props.children}

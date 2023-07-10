@@ -25,15 +25,15 @@ const POST = async (request: NextRequest) => {
                 return NextResponse.json({ message: 'Registered successfully!',saved: true ,savedUser}, { status: 200 }, )
             }
 
-        } catch (error) {
-            console.log('reg2 : ',error)
-            return NextResponse.json({ message: error, saved: false }, { status: 500 })
+        } catch (error:any) {
+            console.log('reg2 : ',error.message)
+            return NextResponse.json({ message: error.message, saved: false }, { status: 500 })
         }
 
-    } catch (error) {
+    } catch (error:any) {
         
-        console.log('reg3 : ',error)
-        return NextResponse.json({ message: error, saved: false }, { status: 500 })
+        console.log('reg3 : ',error.message)
+        return NextResponse.json({ message: error.message, saved: false }, { status: 500 })
     }
 
 

@@ -46,11 +46,50 @@ const Navbar = () => {
         )
     }
 
+    const accountRemover = ()=>{
+        const axiosPromise = axios.post('/api/user/remove',{id:userInfo.user.info._id})
+        toast.promise(
+            axiosPromise,
+            {
+                loading: 'Wait! Deleting your account!',
+                success: (resp) => {
+                    router.push('/signup')
+                    userInfo.dispatch({type:'delUser'})
+                    return resp.data.message
+                },
+                error: (err) => {
+                    return err.response?.data?.message
+                }
+            },
+            {
+                style: {
+                    minWidth: '250px',
+                },
+                success: {
+                    duration: 2000,
+                },
+                error: {
+                    duration: 2000,
+                    icon: '⚠️',
+                    style: {
+                        backgroundColor: 'red',
+                        color: 'white'
+                    },
+
+                },
+            }
+        )
+        
+    }
+    const profileUpdater = ()=>{
+        router.push('/editprofile')
+    }
+
     return (
         <>
-            <div className='flex bg-black justify-evenly p-3'>
+            <div className='flex bg-black justify-evenly p-3 flex-wrap'>
                 <div><Link className="no-underline text-white" href='/'>Homepage</Link></div>
-                <div className="no-underline text-white">About</div>
+                <div className="no-underline text-white" onClick={profileUpdater}>Edit Profile</div>
                 {!userInfo?.user.loggedIn && 
                 <>
                 <div><Link className="no-underline text-white" href='/login'>Sign In</Link></div>
@@ -58,7 +97,7 @@ const Navbar = () => {
                 </>}
                 
                 {userInfo?.user.loggedIn && <div><Link className="no-underline text-white" href='/api/user/logout' onClick={handleLogout}>Logout</Link></div>}
-                <div className="no-underline text-white">Contact</div>
+                <div className="no-underline text-white" onClick={accountRemover}>Delete Account</div>
             </div>
             <div>
                 <Toaster toastOptions={{
