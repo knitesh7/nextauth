@@ -34,17 +34,17 @@ export default async function sendEmail(email, emailType, userKey) {
             }
         });
         //
-        const mailtype = (emailType === 'VerifyEmail') ? 'verifyemail' : 'resetpassword'
-        const isVerifyMail = (mailtype === 'verifymail') ? true : false
-        const task = isVerifyMail ? 'verify your email.' : 'reset the password.'
-        const hrefUrl = `${process.env.DOMAIN}/${mailtype}?token=${hashedToken}`
+        const action = (emailType === 'VerifyEmail') ? 'verifyemail' : 'resetpassword'
+        const task = (emailType === 'VerifyEmail') ? 'verify your email.' : 'reset your password.'
+
+        const hrefUrl = `${process.env.DOMAIN}/${action}?token=${hashedToken}`
 
         const mailOptions = {
             from: 'projectsbyme1234@gmail.com', // sender address
             to: email, // list of receivers
-            subject: emailType === 'VerifyEmail' ? 'Email Verification' : 'Reset Password', // Subject line
+            subject: (emailType === 'VerifyEmail') ? 'Email Verification' : 'Reset Password', // Subject line
             text: "Either Copy below link and paste in the required place or click on the link", // plain text body
-            html: `<a href=${hrefUrl}>Click here or Copy this link</a> to ${task}`, // html body
+            html: `<a href=${hrefUrl}>Here is your link.Copy it!</a> to ${task}`, // html body
         }
         const mailResponse = await transporter.sendMail(mailOptions)
         return mailResponse
