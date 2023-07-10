@@ -1,6 +1,6 @@
 import mongodbConnector from '@/dbConfig/mongoConn'
 import { NextRequest, NextResponse } from 'next/server'
-
+import UserModeler from '@/models/user'
 const POST = async (request: NextRequest) => {
     await mongodbConnector()
     try {
