@@ -45,10 +45,10 @@ const RegisterPage = () => {
                 },
                 success: {
                     duration: 2000,
-                    icon: '🔥',
+                    icon: '✔️',
                     style: {
-                        backgroundColor:'#00FF40',
-                        color:'white'
+                        backgroundColor:'lightgreen',
+                        color:'black'
                     },
 
                 },

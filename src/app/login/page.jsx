@@ -137,6 +137,9 @@ const LoginPage = () => {
                 loading: 'Updating your password!',
                 success: () => {
                     setFp(()=>false)
+                    setemail(()=>'')
+                    seturltoken(()=>'')
+                    setpassword(()=>'')
                     return 'Password has been updated..'
                 },
                 error: (err) => {
