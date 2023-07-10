@@ -29,8 +29,8 @@ export default async function sendEmail(email, emailType, userKey) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.ADMIN_EMAIL,
-                pass: process.env.NODEMAILER_PASSKEY
+                user: 'projectsbyme1234@gmail.com',
+                pass: 'betcwsithtkjzocl'
             }
         });
         //
