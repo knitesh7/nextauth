@@ -77,15 +77,6 @@ const LoginPage = () => {
 
 
     const handleMailSend = async () => {
-
-        // try {
-        //     const resp = await axios.post('/api/user/forgoturl', { email })
-        //     setvisibleUpdate(true)
-
-        // } catch (error) {
-        //     console.log(error.response.data)
-        //     alert(error.response.data.message)
-        // }
         const forgoturlpromise = axios.post('/api/user/forgoturl', { email })
         
         toast.promise(
@@ -97,7 +88,6 @@ const LoginPage = () => {
                     return 'Token has been sent..'
                 },
                 error: (err) => {
-                    setData(() => ({ email: '', password: '' }))
                     return err.response.data.message
                 }
             },
@@ -139,17 +129,41 @@ const LoginPage = () => {
         }
     }
     const handleForgotPass = async () => {
-        try {
-            const token = urltoken.split('=')[1]
+        const token = urltoken.split('=')[1]
+        const updatepasspromise = axios.post('/api/user/forgotpass', { token: token, email, password })
+        toast.promise(
+            updatepasspromise,
+            {
+                loading: 'Updating your password!',
+                success: () => {
+                    setFp(()=>false)
+                    return 'Password has been updated..'
+                },
+                error: (err) => {
+                    return err.response.data.message
+                }
+            },
+            {
+                style: {
+                    minWidth: '250px',
+                },
+                success: {
+                    duration: 2000,
+                    style: {
+                        backgroundColor: 'lightgreen'
+                    },
+                },
+                error: {
+                    duration: 3000,
+                    icon: '⚠️',
+                    style: {
+                        backgroundColor: 'red',
+                        color: 'white'
+                    },
 
-            const resp = await axios.post('/api/user/forgotpass', { token: token, email, password })
-            if(resp.data){
-                alert('Password Updated')
-                setFp(()=>false)
+                },
             }
-        } catch (error) {
-            alert(error.response.data.message)
-        }
+        )
 
     }
 
