@@ -50,7 +50,6 @@ const EditPage = () => {
                     duration: 2000,
                     icon: '⚠️',
                     style: {
-                        backgroundColor: 'red',
                         color: 'white'
                     },
 
@@ -72,7 +71,7 @@ const EditPage = () => {
                 <Toaster toastOptions={{
                     success: {
                         style: {
-                            background: 'green',
+                            background: 'lightgreen',
                         },
                     },
                     error: {
