@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast'
 
 import Link from 'next/link'
-import './signup.css'
 import Profile from './../profile/[userid]/page';
 const EditPage = () => {
     const router = useRouter()
