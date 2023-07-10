@@ -5,7 +5,7 @@ import {  NextResponse } from 'next/server'
 const POST = async () => {
     await mongodbConnector()
     try {
-        const response = NextResponse.json({message:'Logout Successfull',success:true})
+        const response = NextResponse.json({message:'Logout Successfull',success:true},{status:200})
         response.cookies.set('token',"",{httpOnly:true,expires:new Date(0)})
         return response
     } catch (error) {
