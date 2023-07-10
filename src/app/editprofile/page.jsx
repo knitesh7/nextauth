@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast'
 
 import Link from 'next/link'
-import Profile from './../profile/[userid]/page';
+
 const EditPage = () => {
     const router = useRouter()
     const [updatedData, setupdatedData] = useState({ username: '', bio: ''})
@@ -92,7 +92,7 @@ const EditPage = () => {
                         <form method="post" onSubmit={handleSubmit}>
                             <input type="text" name="username" id="username" placeholder="UserName" value={updatedData.username} onChange={handleChange} />
                             <input type="text" name="bio" placeholder="Enter bio" id="bio" value={updatedData.bio} onChange={handleChange} />
-                            <button>Update Profile</button>
+                            <button type='submit'>Update Profile</button>
                         </form>
                     </div>
                 </div>

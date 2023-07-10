@@ -30,7 +30,7 @@ const RegisterPage = () => {
             {
                 loading: 'Wait a moment! Registering you..',
                 success: (resp) => {
-                    setData(() => ({ username: '', email: '', password: '' }))
+                    setData(() => ({ username: '', email: '', password: '' ,bio:''}))
                     setToastLoaded(true)
                     return resp.data.message
                 },
