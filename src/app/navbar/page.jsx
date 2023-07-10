@@ -89,7 +89,7 @@ const Navbar = () => {
         <>
             <div className='flex bg-black justify-evenly p-3 flex-wrap'>
                 <div><Link className="no-underline text-white" href='/'>Homepage</Link></div>
-                <div className="no-underline text-white" onClick={profileUpdater}>Edit Profile</div>
+                <div className="no-underline cursor-pointer text-white" onClick={profileUpdater}>Edit Profile</div>
                 {!userInfo?.user.loggedIn && 
                 <>
                 <div><Link className="no-underline text-white" href='/login'>Sign In</Link></div>
@@ -97,7 +97,7 @@ const Navbar = () => {
                 </>}
                 
                 {userInfo?.user.loggedIn && <div><Link className="no-underline text-white" href='/api/user/logout' onClick={handleLogout}>Logout</Link></div>}
-                <div className="no-underline text-white" onClick={accountRemover}>Delete Account</div>
+                <div className="no-underline cursor-pointer text-white" onClick={accountRemover}>Delete Account</div>
             </div>
             <div>
                 <Toaster toastOptions={{

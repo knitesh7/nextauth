@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast'
-
+import { useUserInfo } from '../contexts/usercontext.js'
 import Link from 'next/link'
 
 const EditPage = () => {
+    const userInfo = useUserInfo()
     const router = useRouter()
     const [updatedData, setupdatedData] = useState({ username: '', bio: ''})
     const [doneUpdate,setdoneUpdate]= useState(false)
@@ -19,7 +20,7 @@ const EditPage = () => {
  
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const editProfilePromise = axios.post('/api/user/edit', {id:userInfo.user.info._id,updatedData}, {
+        const editProfilePromise = axios.post('/api/user/edit', {id:userInfo?.user?.info._id,updatedData}, {
             headers: {
                 "Content-Type": "application/json"
             }
