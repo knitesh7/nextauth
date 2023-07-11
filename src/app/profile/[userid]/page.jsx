@@ -113,7 +113,7 @@ const Profile = () => {
                 )}
 
                 <div className='bg-slate-200'>
-                    {err && <div className='text-red-500'>{Object.entries(err).map((x, i) => <p key={i}>{x[0] === 'currDate' ? `Verification performed at --${moment(x[1]).format('DD-MM-YYYY h:mm:ss A')}` : (x[0] === 'verifyTokenExpiry') ? `Token expiry time was--${moment(x[1]).format('DD-MM-YYYY h:mm:ss A')}` : `${x[0]}--${x[1]}`}</p>)}</div>}
+                    {err && <div className='text-red-500'>{Object.entries(err).map((x, i) => <p key={i}>{(x[0] === 'currDate')? `Verification performed at --${moment(x[1]).format('DD-MM-YYYY h:mm:ss A')}` : (x[0] === 'verifyTokenExpiry') && `Token expiry time was--${moment(x[1]).format('DD-MM-YYYY h:mm:ss A')}`}</p>)}</div>}
                 </div>
             </div>
         </>
