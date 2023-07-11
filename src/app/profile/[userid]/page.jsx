@@ -15,6 +15,7 @@ const Profile = () => {
     const handleChange = (e) => setVerifyUrl(() => e.target.value)
     
     const handleTokenSend = () => {
+        setErr(()=>null)
         const tokenSendPromise = axios.post('/api/user/sendemailtoken', { id: userInfo.user.info._id, email: userInfo.user.info.email })
         toast.promise(
             tokenSendPromise,
