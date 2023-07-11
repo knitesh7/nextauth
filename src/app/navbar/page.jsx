@@ -87,7 +87,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='flex bg-black justify-evenly p-3 flex-wrap mx-3 h-auto'>
+            <div className='flex bg-black justify-between p-3 flex-wrap  h-auto'>
                 <div><Link className="no-underline text-white" href='/'>Homepage</Link></div>
                 {userInfo?.user.loggedIn && <div className="no-underline cursor-pointer text-white" onClick={profileUpdater}>Edit Profile</div>}
                 {!userInfo?.user.loggedIn && 

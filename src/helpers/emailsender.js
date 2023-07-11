@@ -17,7 +17,7 @@ export default async function sendEmail(email, emailType, userKey) {
         switch (emailType) {
             case 'VerifyEmail':
 
-                const expiryDuration = 2 * 60 * 60 * 1000 //milliseconds in 2hr
+                const expiryDuration = 2* 60 * 1000 //milliseconds in 2hr
                 await UserModeler.findOneAndUpdate({ _id: userKey.toString() }, { verifyToken: hashedToken, verifyTokenExpiry: Date.now() + expiryDuration }, options)
                 break
             case 'ResetPass':
