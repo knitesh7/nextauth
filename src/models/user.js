@@ -39,10 +39,6 @@ const userSchema = Schema({
     forgotPasswordTokenExpiry: Date,
     verifyToken: String,
     verifyTokenExpiry: Date
-},{
-    messages: {
-        'unique': 'User with provided email address already exists.'
-      }
 })
 
 
