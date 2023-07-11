@@ -16,7 +16,7 @@ const POST = async (request:NextRequest) => {
             return NextResponse.json({ message: 'Invalid Token' }, { status: 400 })
         } else if (!user2) {
             
-            return NextResponse.json({ message: 'Token Expired,Try verifying again..',...dateObj }, { status: 400 })
+            return NextResponse.json({ message: 'Token Expired,Try verifying again..',...dateObj}, { status: 400 })
         }
         await UserModeler.findByIdAndUpdate(user2._id, { isVerified: true })
         return NextResponse.json({ message: 'Email Verified Succesfully' }, { status: 200 })
