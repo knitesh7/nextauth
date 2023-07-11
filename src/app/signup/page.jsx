@@ -35,7 +35,7 @@ const RegisterPage = () => {
                     return resp.data.message
                 },
                 error: (err) =>{
-                    setData(() => ({ username: '', email: '', password: '' }))
+                    setData(() => ({ username: '', email: '', password: '' ,bio:''}))
                     return err.response.data.message
                 } 
             },

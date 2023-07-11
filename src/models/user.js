@@ -13,15 +13,15 @@ const userSchema = Schema({
         type: String,
         required: [true, 'Please provide an email'],
         unique: true,
-        // validate: {
-        //     validator: function (value) {
-        //         return mongoose
-        //             .model('users')
-        //             .countDocuments({ email: value })
-        //             .then((count) => count === 0);
-        //     },
-        //     message: 'User with provided email address already exists.'
-        // }
+        validate: {
+            validator: function (value) {
+                return mongoose
+                    .model('users')
+                    .countDocuments({ email: value })
+                    .then((count) => count === 0);
+            },
+            message: 'User with provided email address already exists.'
+        }
     },
     password: {
         type: String,
@@ -39,15 +39,13 @@ const userSchema = Schema({
     forgotPasswordTokenExpiry: Date,
     verifyToken: String,
     verifyTokenExpiry: Date
+},{
+    messages: {
+        'unique': 'User with provided email address already exists.'
+      }
 })
 
-userSchema.post('save', function (error, doc, next) {
-    if (error.name === 'MongoError' && error.code === 11000) {
-        next(new Error('Provided Email is already registered.Try with different email address or reset the password'));
-    } else {
-        next(error);
-    }
-});
+
 
 const userModeler = models.users || model('users', userSchema)
 
