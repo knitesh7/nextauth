@@ -1,19 +1,27 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 const userSchema = Schema({
     username: {
         type: String,
         required: [true, 'Please provide an username'],
-        unique: true
     },
     bio: {
         type: String,
-        default:'Default bio📓'
+        default: 'Default bio📓'
     },
     email: {
         type: String,
         required: [true, 'Please provide an email'],
-        unique: true
+        unique: true,
+        validate: {
+            validator: function (value) {
+                return mongoose
+                    .model('users')
+                    .countDocuments({ email: value })
+                    .then((count) => count === 0);
+            },
+            message: 'User with provided email address already exists.Try with different email address or reset the password'
+        }
     },
     password: {
         type: String,
